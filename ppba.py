@@ -16,9 +16,6 @@ for plant in plants:
 
 for plant_detail in plantar:
     driver.get(plant_detail)
-
-    print(plant_detail)
-
     driver.implicitly_wait(0.5)
     plant_time = driver.find_element(
         By.CSS_SELECTOR, ".divback21> div:nth-child(3)").text[5:]
