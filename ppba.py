@@ -10,17 +10,19 @@ options.add_experimental_option(
     "excludeSwitches", ['enable-automation', 'enable-logging'])
 driver = webdriver.Chrome(options=options)
 file = open("addr.txt")
-count_start = 0
+count_start = 3
 while True:
     # 文件读取
     line = file.readline()
     count = 0
-    if count < count_start:
-        break
     if line:
         print("File Line =", line, end='')
-        driver.get(line)
         count += 1
+        while count < count_start:
+            line = file.readline()
+            count += 1
+            print("File Line =", line, end='')
+        driver.get(line)
         sleep(5)
         plant_name = driver.find_element(
             By.CSS_SELECTOR, ".divpa2> .fl> div:nth-child(2)").text
