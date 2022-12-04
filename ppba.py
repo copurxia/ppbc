@@ -60,7 +60,7 @@ while True:
             with open("./img/" + str(count) + " "+plant_name+"/"+plant_detail.split("/")[-1]+" "+plant_time.replace("/", "-").replace(":", ";") + ".png", "wb") as f:
                 f.write(driver.find_element(
                         By.CSS_SELECTOR, "#viewer2> img").screenshot_as_png)
-                print("./img/"+plant_name+"/"+plant_detail.split("/")
+                print("./img/" + str(count) + " "+plant_name+"/"+plant_detail.split("/")
                       [-1]+" "+plant_time.replace("/", "-").replace(": ", "") + ".png")
     else:
         file.close()
