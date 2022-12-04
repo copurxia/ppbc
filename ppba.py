@@ -10,17 +10,20 @@ options.add_experimental_option(
     "excludeSwitches", ['enable-automation', 'enable-logging'])
 driver = webdriver.Chrome(options=options)
 file = open("addr.txt")
-count_start = 3
+count = 0
+count_start = 22
+pcount_max = 30
 while True:
     # 文件读取
     line = file.readline()
-    count = 0
     if line:
         print("File Line =", line, end='')
-        count += 1
+        count = count+1
+        print("count = ", count)
         while count < count_start:
             line = file.readline()
-            count += 1
+            count = count+1
+            print("count = ", count)
             print("File Line =", line, end='')
         driver.get(line)
         sleep(5)
@@ -41,10 +44,14 @@ while True:
         plants = driver.find_elements(
             By.CSS_SELECTOR, ".namew.fl> a:nth-child(1)")
         # 进入每个植物页面
+        pcount = 0
         plantar = []
         for plant in plants:
             plantar.append(plant.get_attribute("href"))
         for plant_detail in plantar:
+            pcount = pcount + 1
+            if pcount > pcount_max:
+                break
             driver.get(plant_detail)
             print("Plant Detail =", plant_detail)
             sleep(2)
