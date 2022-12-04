@@ -4,12 +4,14 @@ from selenium.webdriver.chrome.options import Options
 from time import sleep
 import os
 
+# 配置selenuim
 options = Options()
 options.add_experimental_option(
     "excludeSwitches", ['enable-automation', 'enable-logging'])
 driver = webdriver.Chrome(options=options)
 file = open("addr.txt")
 while True:
+    # 文件读取
     line = file.readline()
     count = 0
     if line:
@@ -17,9 +19,20 @@ while True:
         driver.get(line)
         count += 1
         sleep(5)
+        # 滚动到底部
+        temp_height = 0
+        while True:
+            driver.execute_script("window.scrollBy(0,1000)")
+            sleep(5)
+            check_height = driver.execute_script(
+                "return document.documentElement.scrollTop || window.pageYOffset || document.body.scrollTop;")
+            if check_height == temp_height:
+                break
+        temp_height = check_height
         driver.implicitly_wait(0.5)
         plants = driver.find_elements(
             By.CSS_SELECTOR, ".namew.fl> a:nth-child(1)")
+        # 进入每个植物页面
         plantar = []
         for plant in plants:
             plantar.append(plant.get_attribute("href"))
@@ -34,6 +47,7 @@ while True:
             plant_name = driver.find_element(
                 By.CSS_SELECTOR, "#txt_classsys> a:nth-child(3)> b").text
             print(plant_name, "\n", plant_time, plant_img)
+            # 保存图片
             if not os.path.exists("img/" + str(count) + " " + plant_name):
                 os.mkdir("img/" + str(count) + " "+plant_name)
             with open("./img/" + str(count) + " "+plant_name+"/"+plant_detail.split("/")[-1]+" "+plant_time.replace("/", "-").replace(":", ";") + ".png", "wb") as f:
@@ -42,8 +56,8 @@ while True:
                 print("./img/"+plant_name+"/"+plant_detail.split("/")
                       [-1]+" "+plant_time.replace("/", "-").replace(": ", "") + ".png")
     else:
-        break
         file.close()
+        break
 
 
 driver.quit()
