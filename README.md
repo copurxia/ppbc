@@ -6,3 +6,7 @@
 https://ppbc.iplant.cn/sp/215798
 ```
 ppbc详情页获取每日匿名次数存在上限，请合理安排
+
+count_start变量可以控制从第几行开始
+
+pcount_max变量控制每一个种获取的数量（避免封号）
