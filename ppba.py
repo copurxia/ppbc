@@ -11,7 +11,7 @@ options.add_experimental_option(
 driver = webdriver.Chrome(options=options)
 file = open("addr.txt")
 count = 0
-count_start = 29
+count_start = 121
 pcount_max = 30
 while True:
     # 文件读取
