@@ -11,7 +11,7 @@ options.add_experimental_option(
 driver = webdriver.Chrome(options=options)
 file = open("addr.txt")
 count = 0
-count_start = 121
+count_start = 131
 pcount_max = 30
 while True:
     # 文件读取
@@ -26,7 +26,7 @@ while True:
             print("count = ", count)
             print("File Line =", line, end='')
         driver.get(line)
-        sleep(5)
+        sleep(1)
         plant_name = driver.find_element(
             By.CSS_SELECTOR, ".divpa2> .fl> div:nth-child(2)").text
         print("Plant Name =", plant_name)
