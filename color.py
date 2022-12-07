@@ -56,16 +56,16 @@ for plant in plants:
                 print("i=", i)
                 break
         print("")
-for _c in range(0, 20):
+for _c in range(0, 100):
     for i in range(0, 2599):
         for j in range(366, 1):
             if g[i][j] == 0:
-                if not g[i][j+1] == 0:
-                    g[i][j] = g[i][j+1]
-                    g[i][j+1] = 0
-                elif not g[i-1][j+1] == 0:
-                    g[i][j] = g[i-1][j+1]
-                    g[i-1][j+1] = 0
+                if not g[i+1][j] == 0:
+                    g[i][j] = g[i+1][j]
+                    g[i+1][j] = 0
+                elif not g[i+1][j-1] == 0:
+                    g[i][j] = g[i+1][j-1]
+                    g[i+1][j-1] = 0
 
 x = np.arange(-0.5, 366, 1)  # len = 2600
 y = np.arange(-0.5, 100, 1)  # len = 366

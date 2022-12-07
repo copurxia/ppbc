@@ -11,6 +11,4 @@ y = np.arange(-0.5, 126, 1)  # len = 300
 
 fig, ax = plt.subplots()
 ax.pcolormesh(x, y, Z, cmap=DarkMint_4.mpl_colormap)
-print(type(DarkMint_4.mpl_colormap))
-print(DarkMint_4.mpl_colormap)
 plt.show()

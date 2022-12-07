@@ -6,12 +6,13 @@ import os
 
 # 配置selenuim
 options = Options()
+options.add_argument('--headless')
 options.add_experimental_option(
     "excludeSwitches", ['enable-automation', 'enable-logging'])
 driver = webdriver.Chrome(options=options)
 file = open("addr.txt")
 count = 0
-count_start = 168
+count_start = 319
 pcount_max = 30
 while True:
     # 文件读取
