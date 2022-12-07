@@ -31,10 +31,15 @@ for plant in plants:
         haishoku = Haishoku.loadHaishoku("img\\"+plant+"\\"+pl_img)
         print("日期：", pl_img.split(" ")[1])
         datear = pl_img.split(" ")[1].split("-")
-        arindex = date_num(
+        orar_index = date_num(
             int(datear[0]), int(datear[1]), int(datear[2]))
-        while index_count[arindex] > 3:
+        arindex = orar_index
+        index_n = 1
+        while index_count[arindex] > index_n:
             arindex = arindex+1
+            if arindex == 366:
+                arindex = orar_index
+                index_n = index_n+1
         print("数组序号：", arindex)
         index_count[arindex] = index_count[arindex]+1
         print("时间：", pl_img.split(" ")[2].split(".")[0].replace(";", ":"))
@@ -51,9 +56,19 @@ for plant in plants:
                 print("i=", i)
                 break
         print("")
+for _c in range(0, 20):
+    for i in range(0, 2599):
+        for j in range(366, 1):
+            if g[i][j] == 0:
+                if not g[i][j+1] == 0:
+                    g[i][j] = g[i][j+1]
+                    g[i][j+1] = 0
+                elif not g[i-1][j+1] == 0:
+                    g[i][j] = g[i-1][j+1]
+                    g[i-1][j+1] = 0
 
 x = np.arange(-0.5, 366, 1)  # len = 2600
-y = np.arange(-0.5, 50, 1)  # len = 366
+y = np.arange(-0.5, 100, 1)  # len = 366
 
 fig, ax = plt.subplots()
 # type: ignore
