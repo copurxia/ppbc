@@ -73,4 +73,5 @@ y = np.arange(-0.5, 100, 1)  # len = 366
 fig, ax = plt.subplots()
 # type: ignore
 ax.pcolormesh(x, y, g[:100], cmap=DarkMint_4.mpl_colormap)
-plt.show()
+# plt.show()
+plt.savefig('output/Figure_3.png')
