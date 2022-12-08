@@ -56,9 +56,14 @@ for plant in plants:
                 print("i=", i)
                 break
         print("")
-for _c in range(0, 100):
+
+x = np.arange(-0.5, 366, 1)  # len = 2600
+y = np.arange(-0.5, 100, 1)  # len = 366
+
+fig, ax = plt.subplots()
+for c in range(0, 100):
     for i in range(0, 2599):
-        for j in range(366, 1):
+        for j in range(365, 1, -1):
             if g[i][j] == 0:
                 if not g[i+1][j] == 0:
                     g[i][j] = g[i+1][j]
@@ -66,12 +71,9 @@ for _c in range(0, 100):
                 elif not g[i+1][j-1] == 0:
                     g[i][j] = g[i+1][j-1]
                     g[i+1][j-1] = 0
+    # type: ignore
+    ax.pcolormesh(x, y, g[:100], cmap=DarkMint_4.mpl_colormap)
+    plt.savefig('output/Figure_4_'+str(c)+'.png')
 
-x = np.arange(-0.5, 366, 1)  # len = 2600
-y = np.arange(-0.5, 100, 1)  # len = 366
-
-fig, ax = plt.subplots()
-# type: ignore
-ax.pcolormesh(x, y, g[:100], cmap=DarkMint_4.mpl_colormap)
 # plt.show()
-plt.savefig('output/Figure_3.png')
+plt.savefig('output/Figure_4.png')
