@@ -75,7 +75,7 @@ for c in range(0, 900):
             break
 
 # 从右向左补偿
-for c in range(0, 900):
+for c in range(0, 1500):
     for i in range(0, 2599):
         cnt = 0
         for j in range(0, 365):
@@ -105,4 +105,14 @@ fig, ax = plt.subplots()
 
 ax.pcolormesh(x, y, fold[:120], cmap=DarkMint_4.mpl_colormap)
 # plt.show()
-plt.savefig('output/Figure_14.png')
+plt.savefig('output/Figure_17.png')
+
+# 生成图片
+x = np.arange(-0.5, 122, 1)  # len = 2600
+y = np.arange(-0.5, 200, 1)  # len = 366
+
+fig, ax = plt.subplots()
+
+ax.pcolormesh(x, y, fold[:200], cmap=DarkMint_4.mpl_colormap)
+# plt.show()
+plt.savefig('output/Figure_17_200.png')
