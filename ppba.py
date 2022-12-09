@@ -12,7 +12,7 @@ options.add_experimental_option(
 driver = webdriver.Chrome(options=options)
 file = open("addr.txt")
 count = 0
-count_start = 334
+count_start = 464
 pcount_max = 30
 while True:
     # 文件读取
@@ -63,12 +63,12 @@ while True:
                 By.CSS_SELECTOR, "#viewer2> img").get_attribute("src")
             print(plant_name, "\n", plant_time, plant_img)
             # 保存图片
-            if not os.path.exists("img/" + str(count) + " " + plant_name):
-                os.mkdir("img/" + str(count) + " "+plant_name)
-            with open("./img/" + str(count) + " "+plant_name+"/"+plant_detail.split("/")[-1]+" "+plant_time.replace("/", "-").replace(":", ";") + ".png", "wb") as f:
+            if not os.path.exists("img-backup/" + str(count) + " " + plant_name):
+                os.mkdir("img-backup/" + str(count) + " "+plant_name)
+            with open("./img-backup/" + str(count) + " "+plant_name+"/"+plant_detail.split("/")[-1]+" "+plant_time.replace("/", "-").replace(":", ";") + ".png", "wb") as f:
                 f.write(driver.find_element(
                         By.CSS_SELECTOR, "#viewer2> img").screenshot_as_png)
-                print("./img/" + str(count) + " "+plant_name+"/"+plant_detail.split("/")
+                print("./img-backup/" + str(count) + " "+plant_name+"/"+plant_detail.split("/")
                       [-1]+" "+plant_time.replace("/", "-").replace(": ", "") + ".png")
     else:
         file.close()

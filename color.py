@@ -57,8 +57,8 @@ for plant in plants:
                 break
         print("")
 
-
-for c in range(0, 20):
+# 从左向右补偿
+for c in range(0, 900):
     for i in range(0, 2599):
         cnt = 0
         for j in range(365, 0, -1):
@@ -74,11 +74,35 @@ for c in range(0, 20):
         if cnt == 0:
             break
 
-x = np.arange(-0.5, 366, 1)  # len = 2600
-y = np.arange(-0.5, 100, 1)  # len = 366
+# 从右向左补偿
+for c in range(0, 900):
+    for i in range(0, 2599):
+        cnt = 0
+        for j in range(0, 365):
+            if g[i][j] == 0:
+                if not g[i+1][j] == 0:
+                    g[i][j] = g[i+1][j]
+                    g[i+1][j] = 0
+                elif not g[i][j+1] == 0:
+                    g[i][j] = g[i][j+1]
+                    g[i][j+1] = 0
+            else:
+                cnt = 1
+        if cnt == 0:
+            break
+
+# 折叠
+fold = np.zeros((600, 122), dtype=int)
+for i in range(100):
+    for j in range(366):
+        fold[3*i+j % 3][int(j / 3)] = g[i][j]
+
+# 生成图片
+x = np.arange(-0.5, 122, 1)  # len = 2600
+y = np.arange(-0.5, 120, 1)  # len = 366
 
 fig, ax = plt.subplots()
 
-ax.pcolormesh(x, y, g[:100], cmap=DarkMint_4.mpl_colormap)
+ax.pcolormesh(x, y, fold[:120], cmap=DarkMint_4.mpl_colormap)
 # plt.show()
-plt.savefig('output/Figure_5.png')
+plt.savefig('output/Figure_14.png')
