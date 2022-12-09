@@ -34,7 +34,7 @@ for plant in plants:
         orar_index = date_num(
             int(datear[0]), int(datear[1]), int(datear[2]))
         arindex = orar_index
-        index_n = 1
+        index_n = 0
         while index_count[arindex] > index_n:
             arindex = arindex+1
             if arindex == 366:
@@ -57,23 +57,28 @@ for plant in plants:
                 break
         print("")
 
-x = np.arange(-0.5, 366, 1)  # len = 2600
-y = np.arange(-0.5, 100, 1)  # len = 366
 
-fig, ax = plt.subplots()
-for c in range(0, 100):
+for c in range(0, 20):
     for i in range(0, 2599):
-        for j in range(365, 1, -1):
+        cnt = 0
+        for j in range(365, 0, -1):
             if g[i][j] == 0:
                 if not g[i+1][j] == 0:
                     g[i][j] = g[i+1][j]
                     g[i+1][j] = 0
-                elif not g[i+1][j-1] == 0:
-                    g[i][j] = g[i+1][j-1]
-                    g[i+1][j-1] = 0
-    # type: ignore
-    ax.pcolormesh(x, y, g[:100], cmap=DarkMint_4.mpl_colormap)
-    plt.savefig('output/Figure_4_'+str(c)+'.png')
+                elif not g[i][j-1] == 0:
+                    g[i][j] = g[i][j-1]
+                    g[i][j-1] = 0
+            else:
+                cnt = 1
+        if cnt == 0:
+            break
 
+x = np.arange(-0.5, 366, 1)  # len = 2600
+y = np.arange(-0.5, 100, 1)  # len = 366
+
+fig, ax = plt.subplots()
+
+ax.pcolormesh(x, y, g[:100], cmap=DarkMint_4.mpl_colormap)
 # plt.show()
-plt.savefig('output/Figure_4.png')
+plt.savefig('output/Figure_5.png')
