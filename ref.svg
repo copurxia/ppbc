@@ -1,0 +1,8 @@
+<svg version="1.1" baseProfile="full" width="300" height="200" xmlns="http://www.w3.org/2000/svg">
+    <rect x="10" y="10" width="50px" height="50px" fill="#564F2B" />
+    <rect x="70" y="10" width="50px" height="50px" fill=" #87926E" />
+    <rect x="130" y="10" width="50px" height="50px" fill="#797C2F" />
+    <rect x="10" y="70" width="50px" height="50px" fill="#564F2B" />
+    <rect x="70" y="70" width="50px" height="50px" fill=" #87926E" />
+    <rect x="130" y="70" width="50px" height="50px" fill="#797C2F" />
+</svg>
